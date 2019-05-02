@@ -18,8 +18,8 @@
 #include <ctime>
 #include <thread>
 #include <filesystem>
-#include <iostream> 
-#include <string.h> 
+#include <iostream>
+#include <string.h>
 
 
 using namespace std;
@@ -40,9 +40,9 @@ void PlateCheck(const vector<string> files,const string path,const char * addres
 
     for(int i = 0; i < fileAmt; i++)
     {
-        
+
         finalPath = path + files[i];
-        
+
         // Recognize an image file. Alternatively, you could provide the image bytes in-memory.
         alpr::AlprResults results = openalpr.recognize(finalPath);
 
@@ -122,14 +122,14 @@ void PlateCheck(const vector<string> files,const string path,const char * addres
 
 
 
-	
+
 
 }
 
 vector<string> fileQuery(string query, const char * address, const char * username, const char * password, const char * database,int port)
 {
-    vector<string> files;
-    MYSQL * conn;
+  vector<string> files;
+  MYSQL * conn;
 	MYSQL_ROW row;
 	MYSQL_RES *res;
 	conn = mysql_init(0);
@@ -169,7 +169,7 @@ vector<string> fileQuery(string query, const char * address, const char * userna
 vector<string> config(string configPath)
 {
     string file = "OCR_config.txt";
-    
+
     ifstream config(configPath);
     vector<string> settings;
     string line;
@@ -181,18 +181,18 @@ vector<string> config(string configPath)
     }
     else
     {
-        cout << "There was a error opening the config file. -005" << endl;
+        cout << "There was a error opening the config file. - 005" << endl;
 
     }
 
-    while ( getline(config,line) )    
+    while ( getline(config,line) )
     // get next line in file
     {
         stringstream ss(line);
 
         ss >> output;
         settings.push_back(output);
-        
+
     }
     return settings;
 }
@@ -220,8 +220,6 @@ int main()
         return 1;
     }
 
-    vector<string> fileTODO;
-    
     fs::path currentPath = fs::current_path();
     //cout << currentPath.parent_path() << endl;
     string configFileName = "\\OCR_config.txt";
@@ -232,51 +230,54 @@ int main()
     int PathLen = workPath.size() - 1;
     cout << "Path Length " << PathLen << endl;
     workPath.erase(PathLen,1);
-    configPath = workPath + configFileName; 
-	cout << configPath << " :This is the Config Path" << endl;
+    configPath = workPath + configFileName;
+  	cout << configPath << " :This is the Config Path" << endl;
 
 
-	configArr = config(configPath);
+  	configArr = config(configPath);
 
-	string addressS = configArr[1];
-	const char *address = addressS.c_str();
-	string UserNameS = configArr[2];
-	const char * UserName = UserNameS.c_str();
-	string passwordS = configArr[3];
-	const char *password = passwordS.c_str();
-	string databaseNameS = configArr[4];
-	const char *databaseName = databaseNameS.c_str();
-	string portNameS = configArr[5];
+  	string addressS = configArr[1];
+  	const char *address = addressS.c_str();
+  	string UserNameS = configArr[2];
+  	const char * UserName = UserNameS.c_str();
+  	string passwordS = configArr[3];
+  	const char *password = passwordS.c_str();
+  	string databaseNameS = configArr[4];
+  	const char *databaseName = databaseNameS.c_str();
+  	string portNameS = configArr[5];
 
-	stringstream portConvert(portNameS);
-	portConvert >> portName;
+  	stringstream portConvert(portNameS);
+  	portConvert >> portName;
 
-    string query = "";
+    //Socket Connection to Recive Data from motionFrames or Workloader
 
-    fileTODO = fileQuery(query,address,UserName,password,databaseName,port);
+      string query = "SELECT * FROM motionframes_testing;";
+      vector<string> fileTODO;
 
+      fileTODO = fileQuery(query,address,UserName,password,databaseName,port);
 
-    static const int num_threads = 8;
+      if(fileTODO.size() == 0)
+      {
+          cout << "Photo Array is empty - 008" << endl;
+      }
 
-    thread OCR[num_threads];
+      static const int num_threads = 8;
 
-    for(int q = 0; q < num_threads; q++)
-    {
-        OCR[q] = std::thread(PlateCheck,);
-        q = q + 1;
-        threadCounter = threadCounter + 1;
-        } 
+      thread OCR[num_threads];
 
-    }
-    
-    for(int z = 0; z < num_threads; z++)
-    {
-        OCR[z].join();
-        z = z + 1;
-    }
-    
+      for(int q = 0; q < num_threads; q++)
+      {
+          OCR[q] = std::thread(PlateCheck,address,UserName,password,databaseName,port);
+          q = q + 1;
+          threadCounter = threadCounter + 1;
+          }
 
+      }
 
+      for(int z = 0; z < num_threads; z++)
+      {
+          OCR[z].join();
+          z = z + 1;
+      }
 
 }
-
