@@ -1,0 +1,14 @@
+//TODO Mysql Connector C++#
+//TODO Connect and pull table data#
+//TODO Directory Checking#
+//TODO Slice Dir Path to first slash#
+//TODO Finish Config function SQL#
+//TODO Test SQL dir list Program#
+//TODO OCR
+//TODO Create Query and Insert for Image Delta
+//TODO Split Up Incomeing workload(Array for threads) NumberPlateRecognition
+//TODO Add Socket Communication between movement scanner and OCR
+//TODO Add Node/Cluster Work Handler
+//TODO Add Docker Functionality
+//TODO Server Intergration
+

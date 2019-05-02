@@ -1,0 +1,11 @@
+Files path
+Databasse connection config
+
+
+file path
+IP Address
+Username
+Password
+Database Name
+Port Name
+

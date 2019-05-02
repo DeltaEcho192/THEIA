@@ -1,0 +1,7 @@
+001 - A error to query a database
+002 - failed connections to database, ususally incorrect config values or no access to the internet
+003 - Failed Insertion of values into database ...
+004 - Failed deletion of rows
+005 - Failed to open Config File ... 
+006 - Mismatch in size of the PlateName and Plate confidence array
+007 - Number plate reading libary was not able to be opened

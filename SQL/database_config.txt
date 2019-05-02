@@ -1,0 +1,6 @@
+C:\\Users\\admin\\Development\\Python\\Recon\\Dir_list\\testing_enviro
+localhost
+root
+xxmaster
+recon
+3306
