@@ -14,7 +14,7 @@
 using namespace std;
 
 //This function checks the difference in grey scale between two images using arrays to compare.
-void diffCheck(const std::vector<int> frames0, const std::vector<int> frames1, bool &movement, int threshAmount, bool sizeCheck)
+void diffCheck(const std::vector<int> frames0, const std::vector<int> frames1, bool &movement, int threshAmount, bool sizeCheck,string frameName,const char * address,const char * username, const char * password, const char * database,int port)
 {
     using namespace std;
     int i = 0;
@@ -66,6 +66,37 @@ void diffCheck(const std::vector<int> frames0, const std::vector<int> frames1, b
     if(threshHoldPerc > threshAmount)
     {
         movement = true;
+
+        MYSQL * conn;
+        conn = mysql_init(0);
+
+
+        conn = mysql_real_connect(conn, address, username, password, database, port, NULL, 0);
+
+
+        if (conn)
+        {
+            puts("Successful connection to database!");
+
+            string query = "INSERT INTO motionframes_testing (Frame) values ('" + frameName+ "');";
+            cout << query << endl;
+            const char* q = query.c_str();
+            qstate = mysql_query(conn, q);
+            cout << qstate << endl;
+            if(qstate == 0)
+            {
+                cout << "Insertion was successful" << endl;
+            }
+            else
+            {
+                cout << "There was a failure - 003" << mysql_error(conn) << endl;
+            }
+        
+        }
+        else
+        {
+            puts("Connection to database had failed! - 002");
+        }
     }
     //cout << movement << endl;
     clock_t end = clock();
@@ -207,7 +238,7 @@ void motionInsert(vector<string> newFiles, const char * address,const char * use
 	if (conn)
 	{
 		puts("Successful connection to database!");
-
+        //Not Finished Yet
 		for(int i = 0; i < newFiles.size(); i++)
 		{
 			string query = "INSERT INTO motionframes_testing (Frame) values ('" + newFiles[i] + "');";
@@ -320,7 +351,6 @@ int main()
     {
     
 
-
         //Curently not used code
         /*
         std::ostringstream oss;
@@ -380,8 +410,10 @@ int main()
                 sizeCheck = true;
             }
 
+            string FrameName = fileName + (q+1);
 
-            check[q] = std::thread(diffCheck,std::ref(frames0) ,std::ref(frames1),std::ref(movement1),threshAmount,sizeCheck);
+
+            check[q] = std::thread(diffCheck,std::ref(frames0) ,std::ref(frames1),std::ref(movement1),threshAmount,sizeCheck,FrameName,address,username,password,databaseName,port);
             q = q + 1;
             threadCounter = threadCounter + 1;
             } 
