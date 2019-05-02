@@ -1,0 +1,16 @@
+//TODO write out pixel values for both Images#
+//TODO Import values into array#
+//TODO Make the comparison function in c++ threads#
+//TODO Make sure all values are positive with the Diff#
+//TODO Seperate file reading into to Seperate class#
+//TODO Add functionality to recive and run through multiple different frames and changing frames.#
+//TODO add full easy deployment options with a JSON config file for easy server deployment.#
+//TODO Comment on Code#
+//TODO Add thread Extenstion Capabilities (Having input amount of threads and then calling the approriate function)#
+//TODO Dynamically adding threads(Using while loops and adding wait in second while loop) !!!Maybe#
+//TODO Make sure that if uneven amount of files by threads is delt with.#
+//TODO Get Static Const Converstion Working XXX (Not able to get working)
+//TODO Add switch Case for thread check. XXX (Not Viable)
+//TODO Sanitise inputs
+//TODO Add provistionary OpenCV code
+//TODO For testing run through test data and check how many are detected motion,(How many were detected, How many are there, How many were missed, How many were false alarms)

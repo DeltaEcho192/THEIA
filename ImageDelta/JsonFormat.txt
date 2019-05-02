@@ -1,0 +1,28 @@
+Json Format and what varibles requirments.
+
+Using Json format makes it easier for setup on multiple servers as it acts as a config file which can be easily edited and expanded in the future
+
+Varibles needed:
+
+Path to project
+Path to Frames folder
+File name of Frames
+ThreshHoldAmount
+
+Format:
+
+{
+    "fileNames" : "frames",
+    "ThreshAmount" : 10,
+    "paths":
+    [
+        {
+            "type" : "project",
+            "path" : "C:/Users/admin/Development/C++/ImageDelta"
+        }
+        
+
+    ]
+
+
+}

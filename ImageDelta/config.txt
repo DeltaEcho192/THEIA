@@ -1,0 +1,10 @@
+/frame
+10
+C:/Users/admin/Development/C++/ImageDelta
+C:/Users/admin/Development/OpenCV/ImageChange/Frames
+5
+localhost
+root
+xxmaster
+recon
+3306

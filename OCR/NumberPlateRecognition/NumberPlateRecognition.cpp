@@ -3,7 +3,7 @@
 
 //TODO Using sockets to transport file to be proccessed information
 
-#include "pch.h"
+//#include "pch.h"
 #include <iostream>
 #include <mysql.h>
 #include "TinyEXIF.h"

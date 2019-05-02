@@ -1,0 +1,20 @@
+
+{
+    "fileNames" : "frames",
+    "ThreshAmount" : 10,
+    "paths":
+    [
+        {
+            "type" : "project",
+            "path" : "C:/Users/admin/Development/C++/ImageDelta"
+        },
+        {
+            "type" : "frameLoc",
+            "path" : "C:/Users/admin/Development/OpenCV/ImageChange/Frames/"
+        }
+        
+
+    ]
+
+
+}
