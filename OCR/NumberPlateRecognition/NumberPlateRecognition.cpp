@@ -262,14 +262,73 @@ int main()
       }
 
       static const int num_threads = 8;
+      //Check that amount of threads is even amount
+
+      int arraySize = fileTODO.size();
+      //Add when not equal
+      double filePerArray = fileTODO.size() / num_threads;
+
+      if(arraySize%num_threads = 0)
+      {
+        double filePerArray = fileTODO.size() / num_threads;
+      }
+      else
+      {
+        float remainder = arraySize % num_threads;
+        int filePerArray = floor(arraySize/num_threads);
+        int lastSize = filePerArray + (remainder * num_threads);
+      }
+
+      int counter = 0;
+      string ThreadFiles[num_threads][lastSize];
+
+      for(int i = 0; i < num_threads; i++)
+      {
+        if(i = num_threads - 1)
+        {
+          int lastI = num_threads - 1;
+          for(int x = 0; x < lastSize;x++)
+          {
+            ThreadFiles[lastI][x] = fileTODO[(counter + x)];
+            counter = counter + 1;
+          }
+
+        }
+        else
+        {
+          for(int x = 0; x < filePerArray;x++)
+          {
+            ThreadFiles[i][x] = fileTODO[(counter + x)];
+            counter = counter + 1;
+          }
+        }
+        i = i + 1;
+      }
 
       thread OCR[num_threads];
 
       for(int q = 0; q < num_threads; q++)
       {
-          OCR[q] = std::thread(PlateCheck,address,UserName,password,databaseName,port);
+          vector<string> filesInput;
+          if(q = num_threads - 1)
+          {
+            for(int n = 0;n < lastSize; n++)
+            {
+              filesInput = ThreadFiles[q][n];
+            }
+          }
+          else
+          {
+            for(int n = 0;n < filePerArray; n++)
+            {
+              filesInput = ThreadFiles[q][n];
+            }
+          }
+
+          OCR[q] = std::thread(PlateCheck,filesInput,address,UserName,password,databaseName,port);
           q = q + 1;
           threadCounter = threadCounter + 1;
+          filesInput.clear();
           }
 
       }
