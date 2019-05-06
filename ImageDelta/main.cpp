@@ -35,7 +35,7 @@ void diffCheck(const std::vector<int> frames0, const std::vector<int> frames1, b
         arraylen = frames1.size();
     }
 
-    
+
     clock_t begin = clock();
     while(i < arraylen)
     {
@@ -53,7 +53,7 @@ void diffCheck(const std::vector<int> frames0, const std::vector<int> frames1, b
             threshHold = threshHold + 1;
         }
 
-        i = i + 1; 
+        i = i + 1;
     }
     //cout << "Thresh Hold: " << threshHold << endl;
     diffLen = diff.size();
@@ -91,7 +91,7 @@ void diffCheck(const std::vector<int> frames0, const std::vector<int> frames1, b
             {
                 cout << "There was a failure - 003" << mysql_error(conn) << endl;
             }
-        
+
         }
         else
         {
@@ -126,7 +126,7 @@ vector<int> txtRead(string path)
     }
 
 
-    while ( getline(in1,line) )    
+    while ( getline(in1,line) )
     // get next line in file
     {
         stringstream ss(line);
@@ -134,7 +134,7 @@ vector<int> txtRead(string path)
         ss >> output;
         //Adds greyscale value to array which is retuned back to main function
         frames.push_back(output);
-        
+
     }
     cout << frames[0] << endl;
     return frames;
@@ -145,7 +145,7 @@ vector<int> txtRead(string path)
 vector<string> config(string configPath)
 {
     string file = "config.txt";
-    
+
     ifstream config(configPath);
     vector<string> settings;
     string line;
@@ -160,14 +160,14 @@ vector<string> config(string configPath)
         cout << "There was a error opening the config file." << endl;
     }
 
-    while ( getline(config,line) )    
+    while ( getline(config,line) )
     // get next line in file
     {
         stringstream ss(line);
 
         ss >> output;
         settings.push_back(output);
-        
+
     }
     return settings;
 }
@@ -283,7 +283,7 @@ int main()
     int PathLen = workPath.size() - 1;
     cout << "Path Length " << PathLen << endl;
     workPath.erase(PathLen,1);
-    configPath = workPath + configFileName; 
+    configPath = workPath + configFileName;
 
 
     cout << "Cut Working Path " << configPath << endl;
@@ -300,22 +300,22 @@ int main()
     //Converts strint to int
     stringstream threshConvert(threshAmountS);
     threshConvert >> threshAmount;
-    
+
     string framePath = settings[3];
 
     string addressS = settings[5];
-	const char *address = addressS.c_str();
-	string UserNameS = settings[6];
-	const char * UserName = UserNameS.c_str();
-	string passwordS = settings[7];
-	const char *password = passwordS.c_str();
-	string databaseNameS = settings[8];
-	const char *databaseName = databaseNameS.c_str();
-	string portNameS = settings[9];
+  	const char *address = addressS.c_str();
+  	string UserNameS = settings[6];
+  	const char * UserName = UserNameS.c_str();
+  	string passwordS = settings[7];
+  	const char *password = passwordS.c_str();
+  	string databaseNameS = settings[8];
+  	const char *databaseName = databaseNameS.c_str();
+  	string portNameS = settings[9];
 
-	stringstream portConvert(portNameS);
-	portConvert >> portName;
-    
+  	stringstream portConvert(portNameS);
+  	portConvert >> portName;
+
     //
     //Currently a useless varible as const cant be declered with a varible
     //Long Complicated way of fiquring out amount useing switch case
@@ -330,7 +330,7 @@ int main()
     //
     //
     //
-    
+
 
 
     //Counts how many files in a given directory.
@@ -349,7 +349,7 @@ int main()
     //!!! Remove while loop arg before Final.
     while(b < 1)
     {
-    
+
 
         //Curently not used code
         /*
@@ -392,12 +392,12 @@ int main()
             oss << framePath << fileName << q << ".txt";
             std::string path1 = oss.str();
             cout << "This is the First Path: " << path1 << endl;
-        
+
             std::ostringstream oss1;
             oss1 << framePath << fileName << (q + 1) << ".txt";
             std::string path2 = oss1.str();
             cout << "This is the second path: " << path2 << endl;
-            
+
             frames0 = txtRead(path1);
             frames1 = txtRead(path2);
 
@@ -416,7 +416,7 @@ int main()
             check[q] = std::thread(diffCheck,std::ref(frames0) ,std::ref(frames1),std::ref(movement1),threshAmount,sizeCheck,FrameName,address,username,password,databaseName,port);
             q = q + 1;
             threadCounter = threadCounter + 1;
-            } 
+            }
 
         }
         for(int z = 0; z < num_threads; z++)
@@ -424,7 +424,7 @@ int main()
             check[z].join();
             z = z + 1;
         }
-        
+
         //Checking for movement
         if(movement1 == 1)
         {
@@ -448,7 +448,6 @@ int main()
 
         b = b + 1;
         }
-    
+
     return 0;
 }
-

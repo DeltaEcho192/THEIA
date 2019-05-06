@@ -259,11 +259,17 @@ int main()
       if(fileTODO.size() == 0)
       {
           cout << "Photo Array is empty - 008" << endl;
+          exit(EXIT_FAILURE);
       }
 
       static const int num_threads = 8;
-      //Check that amount of threads is even amount
 
+      if(num_threads % 2 != 0)
+      {
+        cout << "Thread Count was not correct - 009" << endl;
+        exit(EXIT_FAILURE);
+      }
+      //Check that amount of threads is even amount
       int arraySize = fileTODO.size();
       //Add when not equal
       double filePerArray = fileTODO.size() / num_threads;
