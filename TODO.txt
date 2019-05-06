@@ -7,8 +7,10 @@
 //TODO OCR
 //TODO Create Query and Insert for Image Delta#
 //TODO Split Up Incomeing workload(Array for threads) NumberPlateRecognition#
-//TODO Add Socket Communication between movement scanner and OCR
+//TODO Add Socket Communication between movement scanner and OCR !!!NB
+//TODO execution and persistence of program to recheck and execute on new files.
+//TODO Make it single system Runnable
+//TODO Add facial recognition (Python Facenet)
 //TODO Add Node/Cluster Work Handler
 //TODO Add Docker Functionality
 //TODO Server Intergration
-
