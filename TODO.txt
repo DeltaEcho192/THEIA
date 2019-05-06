@@ -1,4 +1,4 @@
-//TODO Mysql Connector C++#
+//TODO MySQL Connector C++#
 //TODO Connect and pull table data#
 //TODO Directory Checking#
 //TODO Slice Dir Path to first slash#
@@ -6,11 +6,12 @@
 //TODO Test SQL dir list Program#
 //TODO OCR
 //TODO Create Query and Insert for Image Delta#
-//TODO Split Up Incomeing workload(Array for threads) NumberPlateRecognition#
+//TODO Split Up Incoming workload(Array for threads) NumberPlateRecognition#
 //TODO Add Socket Communication between movement scanner and OCR !!!NB
+//TODO Linux Runtime Environment to test socket Communication
 //TODO execution and persistence of program to recheck and execute on new files.
 //TODO Make it single system Runnable
 //TODO Add facial recognition (Python Facenet)
 //TODO Add Node/Cluster Work Handler
 //TODO Add Docker Functionality
-//TODO Server Intergration
+//TODO Server Integration
